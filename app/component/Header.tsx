@@ -1,6 +1,8 @@
 "use client";
+
 import { useState } from "react";
 import { Menu, Home, FileText, Award, User } from "lucide-react";
+import ExamCards from "./ExamCards";
 
 const examData = {
   SSC: ["MTS", "CHSL", "CGL", "GD Constable"],
@@ -11,7 +13,7 @@ const examData = {
 
 type ExamCategory = keyof typeof examData;
 
-export default function HomePage() {
+export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedExam, setSelectedExam] = useState<ExamCategory | null>(null);
 
@@ -26,7 +28,7 @@ export default function HomePage() {
           <Menu size={22} />
         </button>
         <h1 className="text-lg font-semibold">Mock Test App</h1>
-        <div className="w-6" /> {/* spacer */}
+        <div className="w-6" />
       </header>
 
       {/* Drawer overlay */}
@@ -75,28 +77,7 @@ export default function HomePage() {
 
       {/* Main content */}
       <main className="flex-1 p-6 mt-2 mb-16">
-        {!selectedExam ? (
-          <p className="text-center text-gray-600 mt-20 text-lg">
-            Select an exam category from the menu to view tests.
-          </p>
-        ) : (
-          <>
-            <h2 className="text-xl font-semibold mb-4 text-gray-800">
-              {selectedExam} Exams
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-              {examData[selectedExam].map((exam) => (
-                <div
-                  key={exam}
-                  className="bg-white p-5 rounded-xl shadow-md text-center hover:shadow-lg hover:scale-105 transition"
-                >
-                  <h3 className="font-semibold text-gray-700">{exam}</h3>
-                  <p className="text-sm text-gray-500 mt-1">Start your test</p>
-                </div>
-              ))}
-            </div>
-          </>
-        )}
+        <ExamCards selectedExam={selectedExam} examData={examData} />
       </main>
 
       {/* Bottom tab bar */}
@@ -121,8 +102,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-
-
-
-
