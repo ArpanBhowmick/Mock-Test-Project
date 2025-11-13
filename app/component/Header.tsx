@@ -49,7 +49,7 @@ export default function Header() {
           <h2 className="font-bold text-gray-700 text-lg">Exams</h2>
           <button
             onClick={() => setDrawerOpen(false)}
-            className="p-2 hover:bg-gray-100 rounded-md"
+            className="p-2 hover:bg-gray-400 rounded-md text-black"
           >
             ✕
           </button>
